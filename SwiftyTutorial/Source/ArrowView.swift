@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class ArrowView: UIView{
-    override class var layerClass : AnyClass{
+public class ArrowView: UIView{
+    override public class var layerClass : AnyClass{
         return CAShapeLayer.self
     }
     
@@ -24,7 +24,7 @@ class ArrowView: UIView{
         case right = 0.0, up = 90.0, left = 180.0, down = 270.0
     }
     
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
         (layer as! CAShapeLayer).path = arrowPath(angle: direction.rawValue, headRate: 0.8, tailRate: 0.6, frame: rect)
     }

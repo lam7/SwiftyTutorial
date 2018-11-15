@@ -20,7 +20,7 @@ private extension Array{
         return nil
     }
 }
-class SwiftyTutorialView: UIView{
+public class SwiftyTutorialView: UIView{
     open weak var maskLayer: CAShapeLayer!
     open weak var markView: UIView!
     open var markSpace: CGFloat = 0
