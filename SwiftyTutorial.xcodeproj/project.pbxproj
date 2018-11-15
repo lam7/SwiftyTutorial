@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AAF26DF52193395B0001EE6D /* SwiftyTutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF26DF42193395B0001EE6D /* SwiftyTutorialView.swift */; };
+		AAF26E2921950D140001EE6D /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF26E2821950D140001EE6D /* ArrowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,12 +22,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AAF26DD9219338FA0001EE6D /* SwiftyTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyTutorial.framework; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/SwiftyTutorial.framework"; sourceTree = "<absolute>"; };
+		AA0A9BAE219D077C0063FA4E /* SwiftyTutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SwiftyTutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/SwiftyTutorialTests.xctest"; sourceTree = "<absolute>"; };
+		AA0A9BAF219D077C0063FA4E /* Tutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Tutorial.framework; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/Tutorial.framework"; sourceTree = "<absolute>"; };
+		AA0A9BB0219D077C0063FA4E /* TutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/TutorialTests.xctest"; sourceTree = "<absolute>"; };
 		AAF26DDD219338FA0001EE6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAF26DE2219338FA0001EE6D /* SwiftyTutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SwiftyTutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/SwiftyTutorialTests.xctest"; sourceTree = "<absolute>"; };
 		AAF26DF42193395B0001EE6D /* SwiftyTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTutorialView.swift; sourceTree = "<group>"; };
-		AAF26DFB2193BC960001EE6D /* Tutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Tutorial.framework; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/Tutorial.framework"; sourceTree = "<absolute>"; };
-		AAF26E032193BC970001EE6D /* TutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/TutorialTests.xctest"; sourceTree = "<absolute>"; };
+		AAF26E242193C2F40001EE6D /* SwiftyTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAF26E2821950D140001EE6D /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF26DDB219338FA0001EE6D /* SwiftyTutorial */,
+				AAF26E242193C2F40001EE6D /* SwiftyTutorial.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF26DF42193395B0001EE6D /* SwiftyTutorialView.swift */,
+				AAF26E2821950D140001EE6D /* ArrowView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -120,7 +124,7 @@
 			);
 			name = SwiftyTutorial;
 			productName = SwiftyTutorial;
-			productReference = AAF26DD9219338FA0001EE6D /* SwiftyTutorial.framework */;
+			productReference = AAF26E242193C2F40001EE6D /* SwiftyTutorial.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AAF26DE1219338FA0001EE6D /* SwiftyTutorialTests */ = {
@@ -138,7 +142,7 @@
 			);
 			name = SwiftyTutorialTests;
 			productName = SwiftyTutorialTests;
-			productReference = AAF26DE2219338FA0001EE6D /* SwiftyTutorialTests.xctest */;
+			productReference = AA0A9BAE219D077C0063FA4E /* SwiftyTutorialTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		AAF26DFA2193BC960001EE6D /* Tutorial */ = {
@@ -156,7 +160,7 @@
 			);
 			name = Tutorial;
 			productName = Tutorial;
-			productReference = AAF26DFB2193BC960001EE6D /* Tutorial.framework */;
+			productReference = AA0A9BAF219D077C0063FA4E /* Tutorial.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AAF26E022193BC970001EE6D /* TutorialTests */ = {
@@ -173,7 +177,7 @@
 			);
 			name = TutorialTests;
 			productName = TutorialTests;
-			productReference = AAF26E032193BC970001EE6D /* TutorialTests.xctest */;
+			productReference = AA0A9BB0219D077C0063FA4E /* TutorialTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -257,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF26E2921950D140001EE6D /* ArrowView.swift in Sources */,
 				AAF26DF52193395B0001EE6D /* SwiftyTutorialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

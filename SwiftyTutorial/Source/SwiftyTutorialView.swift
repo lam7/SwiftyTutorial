@@ -9,41 +9,52 @@
 import Foundation
 import UIKit
 
+public protocol TutorialDescriptional{
+    
+}
+private extension Array{
+    mutating func removeSafety(at: Int)-> Element?{
+        if 0 <= at && at < count{
+            return self.remove(at: at)
+        }
+        return nil
+    }
+}
 class SwiftyTutorialView: UIView{
-    open weak var maskLayer: CAShapeLayer!{
-        didSet{
-            maskLayer.fillRule = .evenOdd
-            maskLayer.fillColor = UIColor(hue: 0, saturation: 0, brightness: 0, alpha: 0.6).cgColor
-        }
-    }
-    
-    open weak var descriptionLabel: UILabel!{
-        didSet{
-            descriptionLabel.numberOfLines = 0
-            descriptionLabel.backgroundColor = .clear
-            descriptionLabel.textColor = .white
-        }
-    }
-    
-    open var descriptionDirection: Direction = .down
-    open var descriptionSpace: CGFloat = 0
+    open weak var maskLayer: CAShapeLayer!
+    open weak var markView: UIView!
+    open var markSpace: CGFloat = 0
     open var spotType: SpotType = .circle
-    
-    open var descriptions: [String] = []
     open var targetsSpotFrame: [CGRect] = []
     open var targetsHitFrame: [CGRect] = []
+    open var targetsMarkDirection: [Direction] = []
+    open var animationDuration: TimeInterval = 0.5
+    open var animationWidth: CGFloat = 20
+    
+    private var hitFrame: CGRect = .zero
     
     public enum Direction{
         case left, right, up, down
     }
+    
     public enum SpotType{
-        case circle, square
+        case circle, square, other(UIBezierPath)
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
+        let markView = ArrowView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
+        addSubview(markView)
+        self.markView = markView
     }
+    
+//    public init(frame: CGRect, markView: UIView){
+//        super.init(frame: frame)
+//        setUp()
+//        addSubview(markView)
+//        self.markView = markView
+//    }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,21 +63,17 @@ class SwiftyTutorialView: UIView{
     
     private func setUp(){
         let maskLayer = CAShapeLayer()
+        maskLayer.fillRule = .evenOdd
+        maskLayer.fillColor = UIColor(hue: 0, saturation: 0, brightness: 0, alpha: 0.6).cgColor
         layer.addSublayer(maskLayer)
         self.maskLayer = maskLayer
-        
-        let descriptionLabel = UILabel()
-        addSubview(descriptionLabel)
-        self.descriptionLabel = descriptionLabel
     }
     
     public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         guard self.bounds.contains(point) else{
             return false
         }
-        guard let hitFrame = self.targetsHitFrame.first else{
-            return true
-        }
+        
         return !hitFrame.contains(point)
     }
     
@@ -84,6 +91,8 @@ class SwiftyTutorialView: UIView{
             cutPath = UIBezierPath(ovalIn: spotFrame)
         case .square:
             cutPath = UIBezierPath(rect: spotFrame)
+        case .other(let path):
+            cutPath = path
         }
         
         path.append(cutPath)
@@ -91,77 +100,79 @@ class SwiftyTutorialView: UIView{
         maskLayer.path = path.cgPath
     }
     
-    private func appearLabel(){
-        guard let text = self.descriptions.first,
-            let target = self.targetsSpotFrame.first else{
-                return
-        }
-        
-        descriptionLabel.text = text
-        descriptionLabel.sizeToFit()
-        
-        let w = descriptionLabel.frame.width
-        let h = descriptionLabel.frame.height
-        switch descriptionDirection {
+    private func moveMarkView(_ target: CGRect){
+        let w = markView.frame.width
+        let h = markView.frame.height
+        let direction = targetsMarkDirection.first ?? .down
+        switch direction {
         case .up:
             var x = target.midX - w / 2
             x = max(0, x)
             x = min(UIScreen.main.bounds.width - w, x)
-            descriptionLabel.frame = CGRect(x: x, y: target.minY - descriptionSpace - h, width: w, height: h)
+            markView.frame = CGRect(x: x, y: target.minY - markSpace - h, width: w, height: h)
         case .down:
             var x = target.midX - w / 2
             x = max(0, x)
             x = min(UIScreen.main.bounds.width - w, x)
-            descriptionLabel.frame = CGRect(x: x, y: target.maxY + descriptionSpace, width: w, height: h)
+            markView.frame = CGRect(x: x, y: target.maxY + markSpace, width: w, height: h)
         case .left:
             var y = target.midY - h / 2
             y = max(0, y)
             y = min(UIScreen.main.bounds.height - h, y)
-            descriptionLabel.frame = CGRect(x: target.minX - descriptionSpace - w, y: y, width: w, height: h)
+            markView.frame = CGRect(x: target.minX - markSpace - w, y: y, width: w, height: h)
         case .right:
             var y = target.midY - h / 2
             y = max(0, y)
             y = min(UIScreen.main.bounds.height - h, y)
-            descriptionLabel.frame = CGRect(x: target.maxX + descriptionSpace, y: y, width: w, height: h)
+            markView.frame = CGRect(x: target.maxX + markSpace, y: y, width: w, height: h)
         }
     }
     
     
-    open func append(_ target: UIView, description: String){
+    open func append(_ target: UIView, direction: Direction = .down){
         targetsSpotFrame.append(target.frame)
         targetsHitFrame.append(target.frame)
-        descriptions.append(description)
+        targetsMarkDirection.append(direction)
     }
     
-    open func append(_ target: UIView, parent: UIViewController, description: String){
+    open func append(_ target: UIView, parent: UIViewController, direction: Direction = .down){
         let frame = parent.view.convert(target.frame, from: target.superview)
-        print(frame)
         targetsSpotFrame.append(frame)
         targetsHitFrame.append(frame)
-        descriptions.append(description)
+        targetsMarkDirection.append(direction)
     }
     
-    open func append(_ spot: CGRect, hit: CGRect, description: String){
+    open func append(_ spot: CGRect, hit: CGRect, direction: Direction = .down){
         targetsSpotFrame.append(spot)
         targetsHitFrame.append(hit)
-        descriptions.append(description)
+        targetsMarkDirection.append(direction)
     }
     
-    open func start(){
-        fillRectLayer()
-        appearLabel()
+    private func animationArrow(_ duration: TimeInterval, d: CGFloat){
+        let direction = self.targetsMarkDirection.first ?? .down
+        UIView.animate(withDuration: duration, delay: 0, options: .repeat, animations: {
+            switch direction{
+            case .up:
+                self.markView.center.y += d
+            case .down:
+                self.markView.center.y -= d
+            case .left:
+                self.markView.center.x += d
+            case .right:
+                self.markView.center.x -= d
+            }
+            
+        }, completion: nil)
     }
     
     open func next(){
-        guard !targetsSpotFrame.isEmpty && !targetsHitFrame.isEmpty && !descriptions.isEmpty else{
-            isHidden = true
-            return
-        }
-        targetsSpotFrame.remove(at: 0)
-        targetsHitFrame.remove(at: 0)
-        descriptions.remove(at: 0)
+        let hit = targetsHitFrame.removeSafety(at: 0) ?? bounds
+        let spot = targetsSpotFrame.removeSafety(at: 0) ?? bounds
+        let direction = targetsMarkDirection.removeSafety(at: 0) ?? .down
+        self.hitFrame = hit
         fillRectLayer()
-        appearLabel()
+        moveMarkView(spot)
+        animationArrow(animationDuration, d: animationWidth)
     }
 }
 
