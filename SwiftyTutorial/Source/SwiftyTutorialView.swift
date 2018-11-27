@@ -44,17 +44,10 @@ public class SwiftyTutorialView: UIView{
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
-        let markView = ArrowView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
+        let markView = ArrowView(frame: CGRect(x: 0, y: 0, width: 50, height: 150))
         addSubview(markView)
         self.markView = markView
     }
-    
-//    public init(frame: CGRect, markView: UIView){
-//        super.init(frame: frame)
-//        setUp()
-//        addSubview(markView)
-//        self.markView = markView
-//    }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -100,7 +93,7 @@ public class SwiftyTutorialView: UIView{
         maskLayer.path = path.cgPath
     }
     
-    private func moveMarkView(_ target: CGRect){
+    private func transformMarkView(_ target: CGRect){
         let w = markView.frame.width
         let h = markView.frame.height
         let direction = targetsMarkDirection.first ?? .down
@@ -110,21 +103,25 @@ public class SwiftyTutorialView: UIView{
             x = max(0, x)
             x = min(UIScreen.main.bounds.width - w, x)
             markView.frame = CGRect(x: x, y: target.minY - markSpace - h, width: w, height: h)
+            markView.transform.rotated(by: 0)
         case .down:
             var x = target.midX - w / 2
             x = max(0, x)
             x = min(UIScreen.main.bounds.width - w, x)
             markView.frame = CGRect(x: x, y: target.maxY + markSpace, width: w, height: h)
+            markView.transform.rotated(by: 180)
         case .left:
             var y = target.midY - h / 2
             y = max(0, y)
             y = min(UIScreen.main.bounds.height - h, y)
             markView.frame = CGRect(x: target.minX - markSpace - w, y: y, width: w, height: h)
+            markView.transform.rotated(by: 270)
         case .right:
             var y = target.midY - h / 2
             y = max(0, y)
             y = min(UIScreen.main.bounds.height - h, y)
             markView.frame = CGRect(x: target.maxX + markSpace, y: y, width: w, height: h)
+            markView.transform.rotated(by: 90)
         }
     }
     
@@ -171,7 +168,7 @@ public class SwiftyTutorialView: UIView{
         let direction = targetsMarkDirection.removeSafety(at: 0) ?? .down
         self.hitFrame = hit
         fillRectLayer()
-        moveMarkView(spot)
+        transformMarkView(spot)
         animationArrow(animationDuration, d: animationWidth)
     }
 }

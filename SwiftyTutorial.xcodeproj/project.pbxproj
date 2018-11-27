@@ -22,12 +22,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AA0A9BAE219D077C0063FA4E /* SwiftyTutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SwiftyTutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/SwiftyTutorialTests.xctest"; sourceTree = "<absolute>"; };
-		AA0A9BAF219D077C0063FA4E /* Tutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Tutorial.framework; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/Tutorial.framework"; sourceTree = "<absolute>"; };
-		AA0A9BB0219D077C0063FA4E /* TutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/TutorialTests.xctest"; sourceTree = "<absolute>"; };
+		AAA3AC2D21ABB15B009D516C /* SwiftyTutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SwiftyTutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/SwiftyTutorialTests.xctest"; sourceTree = "<absolute>"; };
+		AAA3AC2E21ABB15B009D516C /* Tutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Tutorial.framework; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/Tutorial.framework"; sourceTree = "<absolute>"; };
+		AAA3AC2F21ABB15B009D516C /* TutorialTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TutorialTests.xctest; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/TutorialTests.xctest"; sourceTree = "<absolute>"; };
 		AAF26DDD219338FA0001EE6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAF26DF42193395B0001EE6D /* SwiftyTutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTutorialView.swift; sourceTree = "<group>"; };
-		AAF26E242193C2F40001EE6D /* SwiftyTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAF26E242193C2F40001EE6D /* SwiftyTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyTutorial.framework; path = "/Users/main/Desktop/SwiftyTutorial/build/Debug-iphoneos/SwiftyTutorial.framework"; sourceTree = "<absolute>"; };
 		AAF26E2821950D140001EE6D /* ArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				AAF26DDB219338FA0001EE6D /* SwiftyTutorial */,
-				AAF26E242193C2F40001EE6D /* SwiftyTutorial.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,7 +141,7 @@
 			);
 			name = SwiftyTutorialTests;
 			productName = SwiftyTutorialTests;
-			productReference = AA0A9BAE219D077C0063FA4E /* SwiftyTutorialTests.xctest */;
+			productReference = AAA3AC2D21ABB15B009D516C /* SwiftyTutorialTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		AAF26DFA2193BC960001EE6D /* Tutorial */ = {
@@ -160,7 +159,7 @@
 			);
 			name = Tutorial;
 			productName = Tutorial;
-			productReference = AA0A9BAF219D077C0063FA4E /* Tutorial.framework */;
+			productReference = AAA3AC2E21ABB15B009D516C /* Tutorial.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AAF26E022193BC970001EE6D /* TutorialTests */ = {
@@ -177,7 +176,7 @@
 			);
 			name = TutorialTests;
 			productName = TutorialTests;
-			productReference = AA0A9BB0219D077C0063FA4E /* TutorialTests.xctest */;
+			productReference = AAA3AC2F21ABB15B009D516C /* TutorialTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
